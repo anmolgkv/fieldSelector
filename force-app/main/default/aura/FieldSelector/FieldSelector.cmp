@@ -16,7 +16,7 @@
     <aura:attribute name="selectionOption" type="Object" access="private" />
     <aura:attribute name="isActive" type="Boolean" access="private" />
     <!-- Methods -->
-    <aura:method name="initiateFileSelection" action="{!c.initiateFileSelection}">
+    <aura:method name="initiateFieldSelection" action="{!c.initiateFieldSelection}">
         <aura:attribute name="objectName" type="String" />
         <aura:attribute name="additionalOptions" type="String[]" />
         <aura:attribute name="searchByPrefix" type="Boolean" />

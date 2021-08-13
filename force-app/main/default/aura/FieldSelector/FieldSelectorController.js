@@ -2,7 +2,7 @@
     doInit: function (component, event, helper) {
         helper.setDefaultSelectOption(component);
     },
-    initiateFileSelection: function (component, event, helper) {
+    initiateFieldSelection: function (component, event, helper) {
         let params = event.getParam('arguments');
         let selectionOption = component.get("v.selectionOption") || {};
 

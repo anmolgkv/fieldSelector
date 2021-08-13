@@ -3,7 +3,7 @@
         const objectName = cmp.get("v.objectName");
 
         cmp.set("v.isActive", true);
-        cmp.find("fieldSelector").initiateFileSelection(objectName);
+        cmp.find("fieldSelector").initiateFieldSelection(objectName);
     },
     setSelectedField: function (cmp, evt) {
         cmp.set("v.fieldCompleteName", evt.getParam("selectedFieldCompleteName"));
