@@ -1,0 +1,37 @@
+<aura:component extensible="true">
+    <!-- Public Attributes -->
+    <aura:attribute name="isLoading" type="Boolean" access="public" default="false"
+        description="A boolean variable to keep track of the components loading state." />
+
+    <aura:attribute name="toastDetail" type="Object" access="public" description="Stores toast detail." />
+    <!-- Markup -->
+    <lightning:spinner size="medium" variant="brand" class="{!if(v.isLoading, '', 'slds-hide')}"
+        alternativeText="Loading..." />
+
+    <aura:if isTrue="{!v.toastDetail.isVisible}">
+        <div class="demo-only docked-toast">
+            <div class="slds-notify_container slds-is-relative">
+                <div class="{!'slds-notify slds-notify_toast ' +  
+                            if(v.toastDetail.type == 'success', 'slds-theme_success', 'slds-theme_error')}"
+                    role="status">
+                    <span class="slds-assistive-text">{!v.toastDetail.title}</span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small ">
+                            {!v.toastDetail.message}
+                        </h2>
+                    </div>
+
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close"
+                            onclick="{! c.hideToast }">
+                            <lightning:icon iconName="utility:close" variant="inverse" size="small"
+                                alternativeText="Close" />
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    {!v.body}
+</aura:component>

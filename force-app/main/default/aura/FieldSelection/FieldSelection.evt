@@ -1,0 +1,7 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="selectedFieldCompleteName" type="String" />
+    <aura:attribute name="selectedObjectName" type="String" />
+    <aura:attribute name="selectedFieldName" type="String" />
+    <aura:attribute name="type" type="String" />
+    <aura:attribute name="isCanceled" type="Boolean" />
+</aura:event>

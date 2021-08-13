@@ -1,0 +1,57 @@
+<aura:component controller="FieldSelectorCtrl" extensible="false" extends="c:BaseLightningComponent">
+
+    <!-- Public Attribute -->
+    <aura:attribute name="objectName" type="String" access="public" description="Name of object to be searched." />
+    <aura:attribute name="height" type="String" access="public" default="50vh;"
+        description="Name of object to be searched." />
+
+    <!-- Register Events -->
+    <aura:registerEvent name="onFieldSelection" type="c:FieldSelection" />
+
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- Private Attributes -->
+
+    <aura:attribute name="selectionOption" type="Object" access="private" />
+    <aura:attribute name="isActive" type="Boolean" access="private" />
+    <!-- Methods -->
+    <aura:method name="initiateFileSelection" action="{!c.initiateFileSelection}">
+        <aura:attribute name="objectName" type="String" />
+        <aura:attribute name="additionalOptions" type="String[]" />
+        <aura:attribute name="searchByPrefix" type="Boolean" />
+    </aura:method>
+
+    <!-- Markup -->
+    <div>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Select Field
+                    </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium modalContent" style="{!'height:' + v.height}"
+                    id="modal-content-id-1">
+                    <lightning:layout>
+                        <aura:iteration items="{!v.selectionOption.options}" var="currentObject" indexVar="index">
+                            <lightning:layoutItem padding="around-small">
+
+                                <lightning:spinner
+                                    class="{!if(currentObject.status eq 'loading', 'local-spinner', 'slds-hide')}"
+                                    size="small" variant="brand" alternativeText="Loading..." />
+                                <c:ComboBox options="{!currentObject.options}" onchange="{!c.optionSelectionHandler}"
+                                    index="{!index}" scrollHeight="550px;" value="{!currentObject.value}" />
+                            </lightning:layoutItem>
+                        </aura:iteration>
+                    </lightning:layout>
+                </div>
+                <footer class="slds-modal__footer slds-modal__footer_directional">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.cancel}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.done}">Done</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+</aura:component>
